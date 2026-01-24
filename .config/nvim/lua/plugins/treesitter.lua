@@ -6,7 +6,7 @@ table.insert(M, {
     dependencies = {
         'nvim-treesitter/nvim-treesitter-textobjects',
     },
-    lazy = false,
+    lazy = true,
     build = ':TSUpdate',
     config = function()
         -- See `:help nvim-treesitter`
