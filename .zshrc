@@ -1,4 +1,5 @@
-if [[ -f "/opt/homebrew/bin/brew" ]] then
+# Homebrew
+if [[ -f "/opt/homebrew/bin/brew" ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
@@ -8,35 +9,32 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
 
-# Add in starship
-zinit ice depth"1" # git clone depth
+# Starship prompt (load immediately for visual feedback)
 zinit ice as"command" from"gh-r" \
           atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
           atpull"%atclone" src"init.zsh"
 zinit light starship/starship
 
-# Add in zsh plugins
-zi light Aloxaf/fzf-tab
+# Turbo-load plugins (deferred after prompt)
 zinit wait lucid for \
- atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+  atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
     zdharma-continuum/fast-syntax-highlighting \
- blockf \
+  blockf \
     zsh-users/zsh-completions \
- atload"!_zsh_autosuggest_start" \
+  atload"!_zsh_autosuggest_start" \
     zsh-users/zsh-autosuggestions
 
-# Add in snippets
-zi wait lucid for \
+# Load fzf-tab after compinit
+zinit wait lucid for \
+  Aloxaf/fzf-tab
+
+# Add in snippets (deferred)
+zinit wait lucid for \
     OMZL::git.zsh \
     OMZP::command-not-found \
-    atload"unalias grv" OMZ::plugins/git/git.plugin.zsh
+    atload"unalias grv" OMZP::git
 
-# Load completions
-autoload -Uz compinit && compinit
-
-zinit cdreplay -q
-
-# Preferred editor for local and remote sessions
+# Preferred editor
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
@@ -80,7 +78,12 @@ alias ls="eza -a --git --icons=always"
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
-eval "$($(brew --prefix)/bin/mise activate)"
-eval "$(starship init zsh)"
 
 export PATH="/Users/joshuakane/.amp/bin:$PATH"
+
+# Cache mise activation to avoid subshell on every startup
+_mise_path="$(brew --prefix)/bin/mise"
+if [[ -x "$_mise_path" ]]; then
+  eval "$("$_mise_path" activate zsh)"
+fi
+unset _mise_path
