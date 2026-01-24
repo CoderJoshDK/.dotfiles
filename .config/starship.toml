@@ -1,0 +1,86 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+command_timeout = 100
+add_newline = false
+
+format = """
+$username\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$sudo\
+$line_break\
+$jobs\
+$status\
+$os\
+$container\
+$netns\
+$character"""
+right_format = """$cmd_duration$time"""
+
+[profiles]
+transient="""
+$character\
+"""
+
+rtransient="""
+$status\
+$cmd_duration\
+$time\
+"""
+
+[status]
+disabled = false
+
+[line_break]
+disabled = false
+
+[fill]
+disabled = false
+symbol = " "
+
+[shell]
+disabled = false
+
+# Minimal prompt character
+[character]
+success_symbol = '[>](bold green)'
+error_symbol = '[>](bold red)'
+vimcmd_symbol = '[<](bold green)'
+
+# Clean directory display
+[directory]
+style = "bright-blue"
+truncation_length = 10
+truncate_to_repo = false
+repo_root_style = "bold bright-blue"
+read_only = " 󰌾"
+
+[git_branch]
+style = 'bold purple'
+format = '[$branch]($style) '
+truncation_length = 20
+
+[git_status]
+format = '([$all_status$ahead_behind]($style) )'
+conflicted = ' [=${count}](bold red)'
+ahead = ' [⇡${count}](bold green)'
+behind = ' [⇣${count}](bold red)'
+diverged = ' [⇕](bold red)[⇡${ahead_count}](bold green)[⇣${behind_count}](bold red)'
+untracked = ' [?${count}](bold blue)'
+stashed = ' [*${count}](bold cyan)'
+modified = ' [!${count}](bold yellow)'
+staged = ' [+${count}](bold green)'
+renamed = ' [»${count}](bold purple)'
+deleted = ' [✘${count}](bold red)'
+
+# Time on the right
+[time]
+disabled = false
+use_12hr = true
+style = 'bold dimmed white'
+format = '[$time]($style)'
+time_format = '%H:%M:%S %p'
