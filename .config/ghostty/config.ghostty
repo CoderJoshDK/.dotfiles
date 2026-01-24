@@ -1,0 +1,18 @@
+## Window
+quit-after-last-window-closed = true
+window-width = 120
+window-height = 30
+
+mouse-hide-while-typing = true
+shell-integration-features = sudo
+macos-titlebar-style = tabs
+
+## Theme
+theme = Catppuccin Mocha
+
+## Fonts
+font-family = SF Mono
+font-thicken = true
+font-size = 15
+
+auto-update-channel = tip
