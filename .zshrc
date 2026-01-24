@@ -83,3 +83,6 @@ alias ls="eza -a --git --icons=always"
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$($(brew --prefix)/bin/mise activate)"
+eval "$(starship init zsh)"
+
+export PATH="/Users/joshuakane/.amp/bin:$PATH"
