@@ -1,0 +1,28 @@
+[user]
+	email = 74162303+CoderJoshDK@users.noreply.github.com
+	name = CoderJoshDK
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM9JpiUi55Phzs/8Qkyz+MIa+H275Dps4oifTMhSDRaJ
+[alias]
+	change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ \\\"$`echo $VAR`\\\" = '$OLD' ]]; then export $VAR='$NEW'; fi\" $@; }; f"
+[commit]
+	gpgsign = true
+[gpg]
+	program = /opt/homebrew/bin/gpg
+	format = ssh
+[tag]
+	gpgsign = true
+[submodule]
+	recurse = true
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[core]
+	editor = nvim
+	excludesfile = ~/.dotfiles/.gitignore_global
+[push]
+	autoSetupRemote = true
+[pull]
+    rebase = true
+[fetch]
+    prune = true
+[init]
+	defaultBranch = main
