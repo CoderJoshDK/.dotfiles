@@ -10,7 +10,7 @@ NC='\033[0m' # No Color
 
 # Check if running on macOS
 if [[ "$OSTYPE" != "darwin"* ]]; then
-    echo -e "${RED}Error: This script is for macOS only!${NC}"
+    echo "${RED}Error: This script is for macOS only!${NC}"
     exit 1
 fi
 
@@ -24,7 +24,7 @@ fi
 
 # Check if Homebrew is installed
 if ! command -v brew &> /dev/null; then
-    echo -e "${YELLOW}Homebrew not found. Installing Homebrew...${NC}"
+    echo "${YELLOW}Homebrew not found. Installing Homebrew...${NC}"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
     # Add Homebrew to PATH 
@@ -33,7 +33,7 @@ if ! command -v brew &> /dev/null; then
         eval "$(/opt/homebrew/bin/brew shellenv)"
     fi
 else
-    echo -e "${GREEN}✓${NC} Homebrew is already installed"
+    echo "${GREEN}✓${NC} Homebrew is already installed"
 fi
 
 echo "========================================"
@@ -46,5 +46,5 @@ brew bundle check || brew bundle install
 if ! command -v brew &> /dev/null; then
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 else
-    echo -e "${GREEN}✓${NC} rust is already installed"
+    echo "${GREEN}✓${NC} rust is already installed"
 fi
