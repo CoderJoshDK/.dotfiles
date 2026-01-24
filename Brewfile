@@ -61,6 +61,7 @@ brew "zoxide"
 cask "1password"
 cask "1password-cli"
 cask "discord"
+cask "ghostty"
 # cask "helium-browser"
 # cask "orbstack" # Manually install orbastack
 cask "raycast"
