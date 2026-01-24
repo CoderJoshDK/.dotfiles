@@ -48,3 +48,9 @@ if ! command -v brew &> /dev/null; then
 else
     echo "${GREEN}✓${NC} rust is already installed"
 fi
+
+echo "========================================"
+echo "Syncing with stow ..."
+echo "========================================"
+stow .
+echo "${GREEN}✓ All setup${NC}"
