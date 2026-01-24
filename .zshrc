@@ -70,7 +70,21 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # Aliases
 alias vim='nvim'
 alias c='clear'
-alias update="brew update; brew upgrade; brew cleanup; zinit self-update; zinit update"
+
+UPDATE_TASKS=(
+  'echo "Updating Homebrew..."; brew update && brew upgrade; brew cleanup; echo "✓ Homebrew done"'
+  'echo "Updating Zinit..."; zinit self-update && zinit update --parallel; echo "✓ Zinit done"'
+)
+update() {
+  local pids=()
+  for task in "${UPDATE_TASKS[@]}"; do
+    (eval "$task") &
+    pids+=($!)
+  done
+  wait
+  echo "✅ All updates complete"
+}
+
 alias ll="eza -l --git --icons=always"
 alias la="eza -la --git --icons=always"
 alias ls="eza -a --git --icons=always"
