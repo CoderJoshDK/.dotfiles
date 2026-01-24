@@ -1,3 +1,7 @@
 ^/install.*\.sh
 ^/.gitignore_global
 ^/Brewfile
+
+\.git
+\.gitignore
+\.gitmodules

@@ -40,15 +40,11 @@ echo "========================================"
 echo "Installing core packages..."
 echo "========================================"
 brew update
-# brew tap homebrew/bundle
 brew bundle check || brew bundle install
 
 # Check if rust is installed
-
 if ! command -v brew &> /dev/null; then
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 else
     echo -e "${GREEN}✓${NC} rust is already installed"
 fi
-
-
