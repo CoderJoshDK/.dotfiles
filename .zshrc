@@ -26,12 +26,10 @@ zinit wait lucid for \
     zsh-users/zsh-autosuggestions
 
 # Add in snippets
-zi snippet OMZL::git.zsh
-zi snippet OMZP::git
-zi snippet OMZP::sudo
-zi snippet OMZP::command-not-found
-
-# plugins=(git zsh-autosuggestions fast-syntax-highlighting fzf fzf-tab fzf-zsh-plugin)
+zi wait lucid for \
+    OMZL::git.zsh \
+    OMZP::command-not-found \
+    atload"unalias grv" OMZ::plugins/git/git.plugin.zsh
 
 # Load completions
 autoload -Uz compinit && compinit
@@ -74,7 +72,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # Aliases
 alias vim='nvim'
 alias c='clear'
-alias update="brew update; brew upgrade; brew cleanup; omz update"
+alias update="brew update; brew upgrade; brew cleanup; zinit self-update; zinit update"
 alias ll="eza -l --git --icons=always"
 alias la="eza -la --git --icons=always"
 alias ls="eza -a --git --icons=always"
