@@ -83,4 +83,3 @@ disabled = false
 use_12hr = true
 style = 'bold dimmed white'
 format = '[$time]($style)'
-time_format = '%H:%M:%S %p'
