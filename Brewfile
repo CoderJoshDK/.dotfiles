@@ -63,5 +63,5 @@ cask "1password-cli"
 cask "discord"
 cask "ghostty"
 # cask "helium-browser"
-# cask "orbstack" # Manually install orbastack
+cask "orbstack"
 cask "raycast"
