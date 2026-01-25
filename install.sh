@@ -39,6 +39,7 @@ fi
 echo "========================================"
 echo "Installing core packages..."
 echo "========================================"
+brew analytics off
 brew update
 brew bundle check || brew bundle install
 
