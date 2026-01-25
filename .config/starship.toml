@@ -13,13 +13,15 @@ $git_metrics\
 $git_status\
 $sudo\
 $line_break\
-$jobs\
-$status\
 $os\
 $container\
 $netns\
 $character"""
-right_format = """$cmd_duration$time"""
+right_format = """
+$jobs\
+$status\
+$cmd_duration\
+$time"""
 
 [profiles]
 transient="""
