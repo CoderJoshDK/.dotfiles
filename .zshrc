@@ -31,7 +31,6 @@ zinit wait lucid for \
 # Add in snippets (deferred)
 zinit wait lucid for \
     OMZL::git.zsh \
-    OMZP::command-not-found \
     atload"unalias grv" OMZP::git
 
 # Preferred editor
