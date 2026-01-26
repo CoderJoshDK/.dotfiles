@@ -95,7 +95,7 @@ alias ls="eza -a --git --icons=always"
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
-export PATH="/Users/joshuakane/.amp/bin:$PATH"
+export PATH="$HOME/.amp/bin:$PATH"
 
 # Cache mise activation to avoid subshell on every startup
 _mise_path="$(brew --prefix)/bin/mise"
