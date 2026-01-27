@@ -26,7 +26,7 @@ return {
             javascript = { "prettierd", "prettier", stop_after_first = true },
             typescript = { "prettierd", "prettier", stop_after_first = true },
             typescriptreact = { "prettierd", "prettier", stop_after_first = true },
-            markdown = { "markdownlint" },
+            markdown = { "markdownlint", "markdownlint-cli2", stop_after_first = true },
             rust = { "rustfmt", lsp_format = "fallback", args = { "+nightly" } },
         },
         -- Set up format-on-save
