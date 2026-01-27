@@ -3,17 +3,20 @@ table.insert(M, { "nvim-treesitter/nvim-treesitter-context", opts = { max_lines 
 table.insert(M, {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
+    branch = "main",
+    version = false,
     dependencies = {
-        'nvim-treesitter/nvim-treesitter-textobjects',
+        {
+            "nvim-treesitter/nvim-treesitter-textobjects",
+            branch = "main",
+        }
     },
-    lazy = true,
     build = ':TSUpdate',
+    lazy = false,
     config = function()
         -- See `:help nvim-treesitter`
-        -- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'
-        vim.defer_fn(function()
-            require('nvim-treesitter.configs').setup {
-                -- Add languages to be installed here that you want installed for treesitter
+        require('nvim-treesitter').setup(
+            {
                 ensure_installed = {
                     'c', 'cpp', 'lua', 'python', 'rust', 'tsx',
                     'javascript', 'typescript', 'vimdoc', 'vim', 'bash',
@@ -21,8 +24,6 @@ table.insert(M, {
                     'toml', 'sql', 'requirements', 'yaml', 'xml', 'terraform',
                     'gomod', 'gowork', 'gosum', 'go',
                 },
-
-                -- Auto install languages that are not installed. Defaults to false (but you can change for yourself!)
                 auto_install = false,
 
                 highlight = {
@@ -86,7 +87,7 @@ table.insert(M, {
                     },
                 },
             }
-        end, 0)
+        )
     end
 })
 return M
