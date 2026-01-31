@@ -11,3 +11,7 @@ on my personal machine.)
 
 Some software also requires their own setup and config through the GUI // Application. But
 this repo should take you most of the way to ready to program.
+
+## Local changes
+
+For local specific changes that need to be made in `zsh`, create a `.zshrc.local` file.

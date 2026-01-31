@@ -103,3 +103,6 @@ if [[ -x "$_mise_path" ]]; then
   eval "$("$_mise_path" activate zsh)"
 fi
 unset _mise_path
+
+# Local machine-specific config (not tracked in git)
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
