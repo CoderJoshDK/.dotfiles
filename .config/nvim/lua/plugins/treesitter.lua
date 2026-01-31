@@ -23,6 +23,7 @@ table.insert(M, {
                     'markdown', 'markdown_inline', 'comment', 'gitignore', 'json',
                     'toml', 'sql', 'requirements', 'yaml', 'xml', 'terraform',
                     'gomod', 'gowork', 'gosum', 'go',
+                    'ruby', 'embedded_template',
                 },
                 auto_install = false,
 

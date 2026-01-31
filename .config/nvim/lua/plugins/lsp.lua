@@ -149,6 +149,20 @@ table.insert(M, {
                 ty = {}
             }
         })
+        vim.lsp.config('rubocop', {
+            cmd = { 'bundle', 'exec', 'rubocop', '--lsp' },
+        })
+        vim.lsp.config('sorbet', {
+            cmd = { 'bundle', 'exec', 'srb', 'tc', '--lsp' },
+        })
+        vim.lsp.config('ruby_lsp', {
+            init_options = {
+                enabledFeatures = {
+                    diagnostics = false,
+                },
+                formatter = 'rubocop',
+            },
+        })
         vim.lsp.config('basedpyright', {
             settings = {
                 basedpyright = {
@@ -182,7 +196,7 @@ table.insert(M, {
         mason_lspconfig.setup({
             automatic_enable = true,
             automatic_installation = true,
-            ensure_installed = { "ruff", "rust_analyzer", "basedpyright", "ty", "lua_ls" }
+            ensure_installed = { "ruff", "rust_analyzer", "basedpyright", "ty", "lua_ls", "ruby_lsp" }
         })
         vim.lsp.enable('ty', false)
     end,

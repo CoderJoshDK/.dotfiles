@@ -28,6 +28,8 @@ return {
             typescriptreact = { "prettierd", "prettier", stop_after_first = true },
             markdown = { "markdownlint", "markdownlint-cli2", stop_after_first = true },
             rust = { "rustfmt", lsp_format = "fallback", args = { "+nightly" } },
+            ruby = { "rubocop" },
+            eruby = { lsp_format = "fallback" },
         },
         -- Set up format-on-save
         format_on_save = { timeout_ms = 1000, lsp_format = "fallback" }, -- Customize formatters
