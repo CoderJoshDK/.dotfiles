@@ -42,10 +42,10 @@ fi
 
 # Keybindings
 bindkey -v
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
-bindkey '^[[A' history-search-backward
-bindkey '^[[B' history-search-forward
+bindkey '^p' history-beginning-search-backward
+bindkey '^n' history-beginning-search-forward
+bindkey '^[[A' history-beginning-search-backward
+bindkey '^[[B' history-beginning-search-forward
 bindkey '^[w' kill-region
 bindkey '^?' backward-delete-char
 
