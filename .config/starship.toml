@@ -63,20 +63,20 @@ read_only = " 󰌾"
 
 [git_branch]
 style = 'bold purple'
-format = '[$branch]($style) '
+format = '[󰘬$branch]($style) '
 truncation_length = 20
 
 [git_status]
 format = '([$all_status$ahead_behind]($style) )'
-conflicted = ' [=${count}](bold red)'
+conflicted = ' [󰞇${count}](bold red)'
 ahead = ' [⇡${count}](bold green)'
 behind = ' [⇣${count}](bold red)'
 diverged = ' [⇕](bold red)[⇡${ahead_count}](bold green)[⇣${behind_count}](bold red)'
-untracked = ' [?${count}](bold blue)'
-stashed = ' [*${count}](bold cyan)'
-modified = ' [!${count}](bold yellow)'
-staged = ' [+${count}](bold green)'
-renamed = ' [»${count}](bold purple)'
+untracked = ' [󰋗${count}](bold blue)'
+stashed = ' [󰏗${count}](bold cyan)'
+modified = ' [󰏫${count}](bold yellow)'
+staged = ' [󰐕${count}](bold green)'
+renamed = ' [󰑕${count}](bold purple)'
 deleted = ' [✘${count}](bold red)'
 
 # Time on the right
