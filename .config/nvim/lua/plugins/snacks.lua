@@ -97,7 +97,7 @@ table.insert(M, {
         -- find
         { "<leader>fb",      function() Snacks.picker.buffers() end,                                 desc = "Buffers" },
         { "<leader>fc",      function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
-        { "<leader>ff",      function() Snacks.picker.files() end,                                   desc = "Find Files" },
+        { "<leader>ff",      function() Snacks.picker.files({ hidden = true }) end,                  desc = "Find Files" },
         { "<leader>fg",      function() Snacks.picker.git_files() end,                               desc = "Find Git Files" },
         { "<leader>fp",      function() Snacks.picker.projects() end,                                desc = "Projects" },
         { "<leader>fr",      function() Snacks.picker.recent() end,                                  desc = "Recent" },
@@ -140,7 +140,7 @@ table.insert(M, {
         { "<leader>sq",      function() Snacks.picker.qflist() end,                                  desc = "Quickfix List" },
         { "<leader>sr",      function() Snacks.picker.resume() end,                                  desc = "Resume" },
         { "<leader>su",      function() Snacks.picker.undo() end,                                    desc = "Undo History" },
-        { "<leader>sg",      function() Snacks.picker.grep() end,                                    desc = "Search Grep" },
+        { "<leader>sg",      function() Snacks.picker.grep({ hidden = true }) end,                   desc = "Search Grep" },
         { "<leader>sw",      function() Snacks.picker.grep_word() end,                               desc = "Visual selection or word",      mode = { "n", "x" } },
         -- Scratch
         { "<leader>.",       function() Snacks.scratch() end,                                        desc = "Toggle Scratch Buffer" },
