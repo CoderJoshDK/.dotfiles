@@ -11,7 +11,7 @@ macos-titlebar-style = tabs
 theme = Catppuccin Mocha
 
 ## Fonts
-font-family = SF Mono
+font-family = Maple Mono NF CN
 font-thicken = true
 font-size = 15
 
