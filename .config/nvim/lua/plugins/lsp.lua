@@ -13,22 +13,17 @@ table.insert(M, {
         -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
         { "j-hui/fidget.nvim",    opts = {} },
         {
-            {
-                "folke/lazydev.nvim",
-                ft = "lua", -- only load on lua files
-                opts = {
-                    library = {
-                        -- Library items can be absolute paths
-                        -- "~/projects/my-awesome-lib",
-                        -- Or relative, which means they will be resolved as a plugin
-                        -- "LazyVim",
-                        -- When relative, you can also provide a path to the library in the plugin dir
-                        "luvit-meta/library", -- see below
-                    },
+            "folke/lazydev.nvim",
+            ft = "lua",
+            opts = {
+                library = {
+                    "luvit-meta/library",
+                    { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+                    "LazyVim",
                 },
+
             },
-            { "Bilal2453/luvit-meta", lazy = true }, -- `vim.uv` typings
-        }
+        },
     },
     config = function()
         -- [[ Configure LSP ]]
@@ -179,7 +174,17 @@ table.insert(M, {
         vim.lsp.config('lua_ls', {
             settings = {
                 Lua = {
-                    workspace = { checkThirdParty = false },
+                    workspace = {
+                        checkThirdParty = false,
+                        library = {
+                            -- lua_ls@3.17 doesn't load workspaces properly, so we use this workaround
+                            -- Ideally, lazydev handles this all
+                            vim.env.VIMRUNTIME,
+                            { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+                            { path = "snacks.nvim",        words = { "Snacks" } },
+                            -- { path = "snacks.nvim", words = { "Snacks" } }, -- others you need to load
+                        },
+                    },
                     telemetry = { enable = false },
                     -- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
                     -- diagnostics = { disable = { 'missing-fields' } },
