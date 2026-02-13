@@ -44,7 +44,7 @@ brew update
 brew bundle check || brew bundle install
 
 # Check if rust is installed
-if ! command -v brew &> /dev/null; then
+if ! command -v rustup &> /dev/null; then
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 else
     echo "${GREEN}✓${NC} rust is already installed"
