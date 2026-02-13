@@ -98,6 +98,7 @@ eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
 export PATH="$HOME/.amp/bin:$PATH"
+export HOMEBREW_NO_AUTO_UPDATE=1 # I run update manually, very frequently
 
 # Cache mise activation to avoid subshell on every startup
 _mise_path="$(brew --prefix)/bin/mise"
