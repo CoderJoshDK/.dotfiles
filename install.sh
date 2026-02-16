@@ -53,5 +53,9 @@ fi
 echo "========================================"
 echo "Syncing with stow ..."
 echo "========================================"
+
+# Setup uv python discovery
+uv python update-shell || true
+
 stow .
 echo "${GREEN}✓ All setup${NC}"
