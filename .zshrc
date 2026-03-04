@@ -73,6 +73,11 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # Aliases
 alias vim='nvim'
 alias c='clear'
+alias n='nvim .'
+alias ll="eza -l --git --icons=always"
+alias la="eza -la --git --icons=always"
+alias ls="eza -a --git --icons=always"
+alias clean-branches="git branch -vv | grep ': gone]'|  grep -v '\*' | awk '{ print $1; }' | xargs -r git branch -D"
 
 UPDATE_TASKS=(
   'echo "Updating Homebrew..."; brew update && brew upgrade; brew cleanup; echo "✓ Homebrew done"'
@@ -87,11 +92,6 @@ update() {
   wait
   echo "✅ All updates complete"
 }
-
-alias ll="eza -l --git --icons=always"
-alias la="eza -la --git --icons=always"
-alias ls="eza -a --git --icons=always"
-alias clean-branches="git branch -vv | grep ': gone]'|  grep -v '\*' | awk '{ print $1; }' | xargs -r git branch -D"
 
 # Shell integrations
 eval "$(fzf --zsh)"
