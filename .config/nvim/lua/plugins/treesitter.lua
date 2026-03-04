@@ -26,12 +26,12 @@ table.insert(M, {
         },
         auto_install = false,
 
-        highlight = {
-            enable = true,
-            -- regex highlighting is turned on for better spell checking.
-            -- In the case of performance issues, turn this off
-            additional_vim_regex_highlighting = true,
-        },
+        -- highlight = {
+        --     enable = true,
+        --     -- regex highlighting is turned on for better spell checking.
+        --     -- In the case of performance issues, turn this off
+        --     additional_vim_regex_highlighting = true,
+        -- },
         indent = { enable = true },
         incremental_selection = {
             enable = true,
