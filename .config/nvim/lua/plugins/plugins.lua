@@ -96,7 +96,7 @@ return {
                 auto_integrations = true,
                 flavour = "mocha"
             })
-            vim.cmd.colorscheme "catppuccin"
+            vim.cmd.colorscheme "catppuccin-nvim"
         end,
     },
 
