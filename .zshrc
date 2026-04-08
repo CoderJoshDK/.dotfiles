@@ -80,16 +80,13 @@ alias ls="eza -a --git --icons=always"
 alias clean-branches="git branch -vv | grep ': gone]'|  grep -v '\*' | awk '{ print $1; }' | xargs -r git branch -D"
 
 UPDATE_TASKS=(
-  'echo "Updating Homebrew..."; brew update && brew upgrade; brew cleanup; echo "✓ Homebrew done"'
+  'brew update && brew upgrade; brew cleanup; echo "✓ Homebrew done"'
   'echo "Updating Zinit..."; zinit self-update && zinit update --parallel; echo "✓ Zinit done"'
 )
 update() {
-  local pids=()
   for task in "${UPDATE_TASKS[@]}"; do
-    (eval "$task") &
-    pids+=($!)
+    (eval "$task")
   done
-  wait
   echo "✅ All updates complete"
 }
 
