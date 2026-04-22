@@ -1,3 +1,11 @@
+local languages = {
+    'c', 'cpp', 'lua', 'python', 'rust', 'tsx',
+    'javascript', 'typescript', 'vimdoc', 'vim', 'bash',
+    'markdown', 'markdown_inline', 'comment', 'gitignore', 'json',
+    'toml', 'sql', 'requirements', 'yaml', 'xml', 'terraform',
+    'gomod', 'gowork', 'gosum', 'go',
+    'ruby', 'embedded_template', 'just',
+}
 local M = {}
 table.insert(M, { "nvim-treesitter/nvim-treesitter-context", opts = { max_lines = 10 } })
 table.insert(M, {
@@ -7,87 +15,32 @@ table.insert(M, {
     version = false,
     build = ':TSUpdate',
     lazy = false,
-})
--- Hand implement treesitter-modules with new nvim-treesitter API
--- Waiting on a few things related to incremental selection
-table.insert(M, {
-    'MeanderingProgrammer/treesitter-modules.nvim',
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
-    ---@module 'treesitter-modules'
-    ---@type ts.mod.UserConfig
-    opts = {
-        ensure_installed = {
-            'c', 'cpp', 'lua', 'python', 'rust', 'tsx',
-            'javascript', 'typescript', 'vimdoc', 'vim', 'bash',
-            'markdown', 'markdown_inline', 'comment', 'gitignore', 'json',
-            'toml', 'sql', 'requirements', 'yaml', 'xml', 'terraform',
-            'gomod', 'gowork', 'gosum', 'go',
-            'ruby', 'embedded_template',
-        },
-        auto_install = false,
+    config = function()
+        -- replicate `ensure_installed`, runs asynchronously, skips existing languages
+        require('nvim-treesitter').install(languages)
+        require('nvim-treesitter').setup({ install_dir = vim.fn.stdpath('data') .. '/site' })
 
-        -- highlight = {
-        --     enable = true,
-        --     -- regex highlighting is turned on for better spell checking.
-        --     -- In the case of performance issues, turn this off
-        --     additional_vim_regex_highlighting = true,
-        -- },
-        indent = { enable = true },
-        incremental_selection = {
-            enable = true,
-            keymaps = {
-                init_selection = '<c-space>',
-                node_incremental = '<c-space>',
-                scope_incremental = '<c-s>',
-                node_decremental = '<M-space>',
-            },
-        },
-        textobjects = {
-            select = {
-                enable = true,
-                lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-                keymaps = {
-                    -- You can use the capture groups defined in textobjects.scm
-                    ['aa'] = '@parameter.outer',
-                    ['ia'] = '@parameter.inner',
-                    ['af'] = '@function.outer',
-                    ['if'] = '@function.inner',
-                    ['ac'] = '@class.outer',
-                    ['ic'] = '@class.inner',
-                },
-            },
-            move = {
-                enable = true,
-                set_jumps = true, -- whether to set jumps in the jumplist
-                goto_next_start = {
-                    [']m'] = '@function.outer',
-                    [']]'] = '@class.outer',
-                },
-                goto_next_end = {
-                    [']M'] = '@function.outer',
-                    [']['] = '@class.outer',
-                },
-                goto_previous_start = {
-                    ['[m'] = '@function.outer',
-                    ['[['] = '@class.outer',
-                },
-                goto_previous_end = {
-                    ['[M'] = '@function.outer',
-                    ['[]'] = '@class.outer',
-                },
-            },
-            -- TODO: swap logic was moved
-            -- Doesn't exist here anymore
-            swap = {
-                enable = true,
-                swap_next = {
-                    ['<leader>a'] = '@parameter.inner',
-                },
-                swap_previous = {
-                    ['<leader>A'] = '@parameter.inner',
-                },
-            },
-        },
-    }
+        vim.api.nvim_create_autocmd('FileType', {
+            group = vim.api.nvim_create_augroup('treesitter.setup', {}),
+            callback = function(args)
+                local buf = args.buf
+                local filetype = args.match
+
+                -- you need some mechanism to avoid running on buffers that do not
+                -- correspond to a language (like oil.nvim buffers), this implementation
+                -- checks if a parser exists for the current language
+                local language = vim.treesitter.language.get_lang(filetype) or filetype
+                if not vim.treesitter.language.add(language) then
+                    return
+                end
+
+                -- replicate `highlight = { enable = true }`
+                vim.treesitter.start(buf, language)
+
+                -- replicate `indent = { enable = true }`
+                vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+            end,
+        })
+    end,
 })
 return M

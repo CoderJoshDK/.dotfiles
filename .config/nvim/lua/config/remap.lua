@@ -35,6 +35,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     end,
 })
 
+-- treesitter incremental selection. `:h treesitter-defaults` for more info
+vim.keymap.set('n', '<C-space>', 'van', { desc = 'Start incremental selection', remap = true })
+vim.keymap.set('v', '<C-space>', 'an', { desc = 'node incremental selection', remap = true })
+vim.keymap.set('v', '<M-space>', 'in', { desc = 'node decrement selection', remap = true })
+
 -- Highlighted paste doesn't overwrite buffer
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = '[P]aste while putting deleted in void buffer' })
 
