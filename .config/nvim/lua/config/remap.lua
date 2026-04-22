@@ -16,6 +16,7 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", { silent = true, noremap = true }) -- rig
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', function() vim.diagnostic.jump({ count = -1, float = true }) end,
     { desc = 'Go to previous diagnostic message' })
@@ -39,16 +40,6 @@ vim.keymap.set("x", "<leader>p", [["_dP]], { desc = '[P]aste while putting delet
 
 -- nvim-tree
 vim.keymap.set('n', "<leader>tt", "<cmd>NvimTreeToggle<CR>", { desc = '[T]oggle [T]ree' })
-
--- Playground functions
--- scratch for temporary code
-vim.keymap.set("n", "<leader>rss", "<cmd>Scratch<cr>", { desc = '[R]un [S]cratch [S]tart' })
-vim.keymap.set("n", "<leader>rsn", "<cmd>ScratchWithName<cr>", { desc = '[R]un [S]cratch [N]ame' })
-vim.keymap.set("n", "<leader>rso", "<cmd>ScratchOpen<cr>", { desc = '[R]un [S]cratch [O]pen' })
-vim.keymap.set("n", "<leader>rsO", "<cmd>ScratchOpenFzf<cr>", { desc = '[R]un [S]cratch Fuzzy Open' })
--- Sniprun for running code
--- vim.keymap.set({ 'n', 'v' }, '<leader>rc', '<Plug>SnipRun', { silent = true, desc = '[R]un [C]ode' })
--- vim.keymap.set('n', '<F5>', ":let b:caret=winsaveview() <CR> | :%SnipRun <CR>| :call winrestview(b:caret) <CR>", {})
 
 -- Extra git commands
 vim.keymap.set("n", "<leader>Gc", ":Git switch -c ", { desc = "[G]it create new branch" })
