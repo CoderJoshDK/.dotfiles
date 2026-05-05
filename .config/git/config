@@ -1,27 +1,31 @@
 [user]
-	email = 74162303+CoderJoshDK@users.noreply.github.com
-	name = CoderJoshDK
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM9JpiUi55Phzs/8Qkyz+MIa+H275Dps4oifTMhSDRaJ
+    email = 74162303+CoderJoshDK@users.noreply.github.com
+    name = CoderJoshDK
+    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM9JpiUi55Phzs/8Qkyz+MIa+H275Dps4oifTMhSDRaJ
 [alias]
-	change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ \\\"$`echo $VAR`\\\" = '$OLD' ]]; then export $VAR='$NEW'; fi\" $@; }; f"
+    change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ \\\"$`echo $VAR`\\\" = '$OLD' ]]; then export $VAR='$NEW'; fi\" $@; }; f"
 [commit]
-	gpgsign = true
+    gpgsign = true
 [gpg]
-	program = /opt/homebrew/bin/gpg
-	format = ssh
+    program = /opt/homebrew/bin/gpg
+    format = ssh
 [tag]
-	gpgsign = true
+    gpgsign = true
 [submodule]
-	recurse = true
+    recurse = true
 [gpg "ssh"]
-	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+    program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 [core]
-	editor = nvim
+    editor = nvim
 [push]
-	autoSetupRemote = true
+    autoSetupRemote = true
 [pull]
     rebase = true
 [fetch]
     prune = true
 [init]
-	defaultBranch = main
+    defaultBranch = main
+[maintenance]
+    strategy = incremental
+[maintenance "gc"]
+    schedule = weekly
