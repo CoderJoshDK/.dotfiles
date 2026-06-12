@@ -1,8 +1,8 @@
 return {
     -- Autocompletion
     'saghen/blink.cmp',
-    version = '1.*',
     dependencies = {
+        'saghen/blink.lib',
         -- Snippet Engine & its associated nvim-cmp source
         { 'L3MON4D3/LuaSnip', version = 'v2.*' },
         -- -- Adds a number of user-friendly snippets
@@ -10,6 +10,11 @@ return {
         'Kaiser-Yang/blink-cmp-git',
         'disrupted/blink-cmp-conventional-commits',
     },
+    build = function()
+        -- build the fuzzy matcher, optionally add a timeout to `pwait(timeout_ms)`
+        -- you can use `gb` in `:Lazy` to rebuild the plugin as needed
+        require('blink.cmp').build():pwait()
+    end,
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
@@ -22,7 +27,7 @@ return {
         },
         sources = {
             -- add 'git' to the list
-            default = { 'git', 'lsp', 'path', 'snippets', 'buffer', 'conventional_commits', "lazydev", },
+            default = { 'lsp', 'git', 'path', 'snippets', 'buffer', 'conventional_commits', "lazydev", },
             providers = {
                 lazydev = {
                     name = "LazyDev",
