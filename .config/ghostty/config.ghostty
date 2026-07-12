@@ -18,3 +18,6 @@ font-size = 15
 font-feature = cv35
 
 auto-update-channel = tip
+
+## Key binds
+keybind = global:opt+backquote=toggle_quick_terminal
