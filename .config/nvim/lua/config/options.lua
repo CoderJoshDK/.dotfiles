@@ -64,10 +64,6 @@ vim.o.inccommand = 'split'
 -- See `:help 'confirm'`
 vim.o.confirm = true
 
--- disable netrw for nvim-tree
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 vim.o.termguicolors = true
 
 vim.o.colorcolumn = "100"
