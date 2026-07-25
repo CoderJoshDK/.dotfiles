@@ -17,7 +17,10 @@ table.insert(M, {
         explorer = { replace_netrw = true },
         picker = {
             sources = {
-                explorer = {}
+                explorer = {
+                    hidden = true,  -- show dotfiles in the explorer
+                    ignored = true, -- show git-ignored files in the explorer
+                }
             }
         },
         dashboard = {
@@ -135,6 +138,18 @@ table.insert(M, {
                 Snacks.toggle.inlay_hints():map("<leader>uh")
                 Snacks.toggle.indent():map("<leader>ug")
                 Snacks.toggle.dim():map("<leader>uD")
+
+                -- Hidden files should look normal, not greyed out like ignored files.
+                -- Set only the foreground (from Normal) so the cursor-line background
+                -- on the selected row is not overridden.
+                local function explorer_hidden_hl()
+                    local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+                    vim.api.nvim_set_hl(0, "SnacksPickerPathHidden", {
+                        fg = normal.fg or nil,
+                    })
+                end
+                explorer_hidden_hl()
+                vim.api.nvim_create_autocmd("ColorScheme", { callback = explorer_hidden_hl })
             end,
         })
     end
