@@ -18,8 +18,7 @@ table.insert(M, {
         picker = {
             sources = {
                 explorer = {
-                    hidden = true,  -- show dotfiles in the explorer
-                    ignored = true, -- show git-ignored files in the explorer
+                    hidden = true, -- show dotfiles in the explorer
                 }
             }
         },
