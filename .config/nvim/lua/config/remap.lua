@@ -43,8 +43,5 @@ vim.keymap.set('v', '<M-space>', 'in', { desc = 'node decrement selection', rema
 -- Highlighted paste doesn't overwrite buffer
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = '[P]aste while putting deleted in void buffer' })
 
--- nvim-tree
-vim.keymap.set('n', "<leader>tt", "<cmd>NvimTreeToggle<CR>", { desc = '[T]oggle [T]ree' })
-
 -- Extra git commands
 vim.keymap.set("n", "<leader>Gc", ":Git switch -c ", { desc = "[G]it create new branch" })
