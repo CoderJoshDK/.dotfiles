@@ -18,7 +18,8 @@ return {
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
-        fuzzy = { implementation = "prefer_rust" },
+        -- fuzzy = { implementation = "prefer_rust" }, -- broken on macos 27
+        fuzzy = { implementation = "lua" },
 
         snippets = { preset = "luasnip" },
         -- Keep an eye on signature support. Remove ray-x/lsp_signature.nvim once stable
