@@ -1,7 +1,13 @@
 return {
     "stevearc/conform.nvim",
     event = { "BufWritePre" },
-    cmd = { "ConformInfo" },
+    cmd = { "ConformInfo", "Format" },
+    config = function(_, opts)
+        require("conform").setup(opts)
+        vim.api.nvim_create_user_command("Format", function()
+            require("conform").format({ async = true, lsp_format = "fallback" })
+        end, { desc = "Format buffer with Conform" })
+    end,
     keys = {
         {
             -- Customize or remove this keymap to your liking

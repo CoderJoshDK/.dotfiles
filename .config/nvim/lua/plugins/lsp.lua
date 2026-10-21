@@ -29,6 +29,7 @@ table.insert(M, {
         -- [[ Configure LSP ]]
         --  This function gets run when an LSP connects to a particular buffer.
         vim.api.nvim_create_autocmd('LspAttach', {
+            group = vim.api.nvim_create_augroup('config-lsp-attach', { clear = true }),
             callback = function(ev)
                 local client = vim.lsp.get_client_by_id(ev.data.client_id)
                 if not client then
@@ -40,7 +41,7 @@ table.insert(M, {
                         desc = "LSP: " .. desc
                     end
 
-                    vim.keymap.set("n", keys, func, { buffer = true, desc = desc })
+                    vim.keymap.set("n", keys, func, { buffer = ev.buf, desc = desc })
                 end
                 if client.name == "ruff" then
                     client.server_capabilities.hoverProvider = false
@@ -52,7 +53,7 @@ table.insert(M, {
 
                 -- See `:help K` for why this keymap
                 nmap("K", vim.lsp.buf.hover, "Hover Documentation")
-                nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
+                nmap("<leader>ck", vim.lsp.buf.signature_help, "Signature Documentation")
 
                 -- Lesser used LSP functionality
                 nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
@@ -60,11 +61,6 @@ table.insert(M, {
                 nmap("<leader>wl", function()
                     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
                 end, "[W]orkspace [L]ist Folders")
-
-                -- Create a command `:Format` local to the LSP buffer
-                vim.api.nvim_buf_create_user_command(ev.buf, "Format", function(_)
-                    vim.lsp.buf.format()
-                end, { desc = "Format current buffer with LSP" })
             end
         })
 
@@ -192,18 +188,13 @@ table.insert(M, {
             }
         })
 
-        require("mason").setup()
-        require("mason-lspconfig").setup()
-
         -- Ensure the servers above are installed
         local mason_lspconfig = require("mason-lspconfig")
 
         mason_lspconfig.setup({
-            automatic_enable = true,
-            automatic_installation = true,
+            automatic_enable = { exclude = { "ty" } },
             ensure_installed = { "ruff", "rust_analyzer", "basedpyright", "ty", "lua_ls", "ruby_lsp" }
         })
-        vim.lsp.enable('ty', false)
     end,
 })
 
