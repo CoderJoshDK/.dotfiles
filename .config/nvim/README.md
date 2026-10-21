@@ -5,7 +5,10 @@ This config is not made for others. But feel free to take inspiration or ~~steal
 
 ## Setup
 
-This setup does not work out of the box and requires you to download a few dependencies.
+Use Neovim 0.12 or newer (required by the current nvim-treesitter `main` branch).
+On first launch, lazy.nvim installs plugins and Mason installs the configured language servers.
+Git and a C compiler are needed for plugin/parser installation; completion currently uses Blink's
+Lua fuzzy matcher.
 
 ### Quick Look at Plugins
 
@@ -17,19 +20,15 @@ This setup does not work out of the box and requires you to download a few depen
 #### plugins
 
 * auto format
-  * conform.nvim; I made a custom command for python formatting. Use Ruff's Isort if possible
+  * conform.nvim; format-on-save and manual formatting
 * completion
-  * basically just kickstart's setup. But added command pallet auto complete
+  * blink.cmp with LuaSnip, Git, conventional-commit, and command-line completion
 * lsp
   * lsp-config and Mason
-* playground
-  * scratch files and a code runner (contains a plugin I created)
 * plugins
   * all other plugins that do not require special configs or are not important enough to pull out
 * snacks
-  * Extra QoL plugins. Requires the gh CLI and `gh ext install meiji163/gh-notify`
-* tree
-  * tree UI for when opening on `nvim .`. Does call for modifications to default tree view.
+  * file explorer, pickers, scratch buffers, notifications, and other QoL features
 * treesitter
   * treesitter
 
