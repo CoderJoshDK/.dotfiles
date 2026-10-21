@@ -1,6 +1,10 @@
 -- [[ Setting options ]]
 -- See `:help vim.o`
 
+-- Python editing uses LSP and Ruff, not the Python remote-plugin host.
+-- Disable provider discovery before plugins load (it probes Python executables on PATH).
+vim.g.loaded_python3_provider = 0
+
 -- Set highlight on search
 -- vim.o.hlsearch = false -- turn off highlight by hitting escape
 vim.o.incsearch = true
