@@ -44,7 +44,7 @@ return {
                     else
                         gitsigns.nav_hunk('next')
                     end
-                end, { expr = true, desc = 'Jump to next hunk' })
+                end, { desc = 'Jump to next hunk' })
 
                 map('n', '[c', function()
                     if vim.wo.diff then
@@ -52,7 +52,7 @@ return {
                     else
                         gitsigns.nav_hunk('prev')
                     end
-                end, { expr = true, desc = 'Jump to previous hunk' })
+                end, { desc = 'Jump to previous hunk' })
 
                 -- Actions
                 -- visual mode
@@ -63,9 +63,9 @@ return {
                     gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
                 end, { desc = 'reset git hunk' })
                 -- normal mode
-                map('n', '<leader>gs', gitsigns.stage_hunk, { desc = 'git stage hunk' })
+                map('n', '<leader>hs', gitsigns.stage_hunk, { desc = 'git stage hunk' })
                 map('n', '<leader>gr', gitsigns.reset_hunk, { desc = 'git reset hunk' })
-                map('n', '<leader>gS', gitsigns.stage_buffer, { desc = 'git Stage buffer' })
+                map('n', '<leader>hS', gitsigns.stage_buffer, { desc = 'git Stage buffer' })
                 map('n', '<leader>gR', gitsigns.reset_buffer, { desc = 'git Reset buffer' })
                 map('n', '<leader>gp', gitsigns.preview_hunk, { desc = 'preview git hunk' })
                 map('n', '<leader>gdd', gitsigns.diffthis, { desc = 'git diff against index' })

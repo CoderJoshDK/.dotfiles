@@ -1,30 +1,19 @@
----@param tab vim.lsp.Client[]
----@param val string
----@return boolean
-local function has_value(tab, val)
-    for _, value in pairs(tab) do
-        if value.name == val then
-            return true
-        end
-    end
-
-    return false
-end
-
 vim.keymap.set({ 'n', 'i' }, '<M-s>', function()
-        local clients = vim.lsp.get_clients()
-
-        if has_value(clients, 'basedpyright') then
-            vim.lsp.enable('basedpyright', false);
-            vim.lsp.enable('ty', true);
-            vim.notify("Switching to ty");
+        -- Enabling/disabling a server affects every Python buffer in this session.
+        if vim.lsp.is_enabled('basedpyright') then
+            vim.lsp.enable('basedpyright', false)
+            vim.lsp.enable('ty', true)
+            vim.notify("Switching to ty")
         else
-            vim.lsp.enable('basedpyright', true);
-            vim.lsp.enable('ty', false);
-            vim.notify("Switching to basedpyright");
+            vim.lsp.enable('ty', false)
+            vim.lsp.enable('basedpyright', true)
+            vim.notify("Switching to basedpyright")
         end
-        -- Not ideal, but clears diagnostics to prevent duplicates
-        vim.api.nvim_command(':e')
+        -- Reload to clear stale diagnostics and refresh them with the new server.
+        vim.cmd.edit()
     end,
-    { desc = 'Swap active LSP between basedpyright and ty' }
+    { buffer = true, desc = 'Swap Python LSP between basedpyright and ty (session-wide)' }
 )
+
+vim.b.undo_ftplugin = (vim.b.undo_ftplugin and (vim.b.undo_ftplugin .. ' | ') or '')
+    .. "execute 'silent! nunmap <buffer> <M-s>' | execute 'silent! iunmap <buffer> <M-s>'"
