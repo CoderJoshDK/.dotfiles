@@ -7,7 +7,6 @@ return {
         { 'L3MON4D3/LuaSnip', version = 'v2.*' },
         -- -- Adds a number of user-friendly snippets
         'rafamadriz/friendly-snippets',
-        'Kaiser-Yang/blink-cmp-git',
         'disrupted/blink-cmp-conventional-commits',
     },
     build = function()
@@ -29,19 +28,13 @@ return {
             completion = { menu = { auto_show = true } },
         },
         sources = {
-            -- add 'git' to the list
-            default = { 'lsp', 'git', 'path', 'snippets', 'buffer', 'conventional_commits', "lazydev", },
+            default = { 'lsp', 'path', 'snippets', 'buffer', 'conventional_commits', "lazydev", },
             providers = {
                 lazydev = {
                     name = "LazyDev",
                     module = "lazydev.integrations.blink",
                     -- make lazydev completions top priority (see `:h blink.cmp`)
                     score_offset = 100,
-                },
-                git = {
-                    module = 'blink-cmp-git',
-                    name = 'Git',
-                    opts = {},
                 },
                 conventional_commits = {
                     name = 'Conventional Commits',
