@@ -29,3 +29,6 @@
     strategy = incremental
 [maintenance "gc"]
     schedule = weekly
+[credential "https://ampcode.com/"]
+	helper = 
+	helper = !amp git-credential-helper
