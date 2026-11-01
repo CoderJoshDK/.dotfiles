@@ -23,6 +23,10 @@ table.insert(M, {
             }
         },
         dashboard = {
+            config = function(opts)
+                table.insert(opts.preset.keys, #opts.preset.keys,
+                    { icon = "󰏖 ", key = "M", desc = "Mason", action = ":Mason" })
+            end,
             sections = {
                 { section = "header" },
                 { section = "keys",   gap = 1, padding = 1 },
