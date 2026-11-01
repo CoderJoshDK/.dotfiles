@@ -1,2 +1,7 @@
 [tools]
 ruby = "4"
+
+[settings]
+
+[settings.ruby]
+compile = false
